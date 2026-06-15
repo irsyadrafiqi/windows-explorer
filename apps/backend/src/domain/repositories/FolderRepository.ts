@@ -49,4 +49,38 @@ export class FolderRepository {
       },
     });
   }
+  
+  async createFolder(
+    name: string,
+    parentId?: number
+  ) {
+    return prisma.folder.create({
+      data: {
+        name,
+        parentId: parentId || null,
+      },
+    });
+  }
+
+  async renameFolder(
+    id: number,
+    name: string
+  ) {
+    return prisma.folder.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+      },
+    });
+  }
+  
+  async deleteFolder(id: number) {
+    return prisma.folder.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }

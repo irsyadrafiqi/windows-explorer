@@ -25,4 +25,32 @@ export class FolderController {
   ) {
     return service.search(keyword);
   }
+
+  static async createFolder(
+    name: string,
+    parentId?: number
+  ) {
+    return service.createFolder(
+      name,
+      parentId
+    );
+  }
+  
+  static async renameFolder(
+    id: number,
+    name: string
+  ) {
+    return service.renameFolder(
+      id,
+      name
+    );
+  }
+
+  static async deleteFolder(
+    id: number
+  ) {
+    return service.deleteFolder(
+      id
+    );
+  }
 }

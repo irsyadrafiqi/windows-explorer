@@ -1,4 +1,4 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { FolderController } from "../controllers/FolderController";
 
 export const folderRoutes =
@@ -37,4 +37,40 @@ export const folderRoutes =
             query.q || ""
           )
         )
-    );
+    )
+
+    .post(
+      "/",
+      ({ body }) =>
+        FolderController.createFolder(
+          body.name,
+          body.parentId
+        ),
+      {
+        body: t.Object({
+          name: t.String(),
+          parentId: t.Optional(t.Number()),
+        }),
+      }
+    )
+    .put(
+      "/:id",
+      ({ params, body }) =>
+        FolderController.renameFolder(
+          Number(params.id),
+          body.name
+        ),
+      {
+        body: t.Object({
+          name: t.String(),
+        }),
+      }
+    )
+
+    .delete(
+      "/:id",
+      ({ params }) =>
+        FolderController.deleteFolder(
+          Number(params.id)
+        )
+    )

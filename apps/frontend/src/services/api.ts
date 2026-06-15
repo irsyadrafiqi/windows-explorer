@@ -47,3 +47,40 @@ export const searchFolders = async (keyword: string) => {
 
   return data;
 };
+export const createFolder = async (
+  name: string,
+  parentId?: number
+) => {
+  const { data } = await api.post(
+    "/folders",
+    {
+      name,
+      parentId,
+    }
+  );
+
+  return data;
+};
+export const renameFolder = async (
+  id: number,
+  name: string
+) => {
+  const { data } = await api.put(
+    `/folders/${id}`,
+    {
+      name,
+    }
+  );
+
+  return data;
+};
+export const deleteFolder = async (
+  id: number
+) => {
+  const { data } =
+    await api.delete(
+      `/folders/${id}`
+    );
+
+  return data;
+};

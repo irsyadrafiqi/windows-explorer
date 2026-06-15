@@ -56,4 +56,31 @@ export class FolderService {
       keyword
     );
   }
+
+  async createFolder(
+    name: string,
+    parentId?: number
+  ) {
+    return this.repository.createFolder(
+      name,
+      parentId
+    );
+  }
+  
+  async renameFolder(
+    id: number,
+    name: string
+  ) {
+    return this.repository.renameFolder(
+      id,
+      name
+    );
+  }
+  async deleteFolder(
+    id: number
+  ) {
+    return this.repository.deleteFolder(
+      id
+    );
+  }
 }
